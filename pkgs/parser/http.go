@@ -15,6 +15,7 @@ type ParserHTTP struct {
 	Port    int
 	User    string
 	Pass    string
+	*StreamField
 }
 
 func (that *ParserHTTP) Parse(rawUri string) {
