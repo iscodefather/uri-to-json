@@ -6,8 +6,6 @@ import (
 	"os"
 	"encoding/json"
 	"strconv"
-
-	"github.com/gvcgo/goutils/pkgs/gtui"
 )
 
 type ParserHTTP struct {
@@ -20,14 +18,11 @@ type ParserHTTP struct {
 
 func (that *ParserHTTP) Parse(rawUri string) {
 	if u, err := url.Parse(rawUri); err == nil {
+		that.StreamField = &StreamField{}
 		that.Address = u.Hostname()
 		that.Port, _ = strconv.Atoi(u.Port())
 		that.User = u.User.Username()
 		that.Pass, _ = u.User.Password()
-	} else {
-		gtui.PrintError(err)
-		fmt.Println(rawUri)
-		return
 	}
 }
 
