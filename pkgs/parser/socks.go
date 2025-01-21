@@ -15,6 +15,7 @@ type ParserSocks struct {
 	Port    int
 	User    string
 	Pass    string
+	*StreamField
 }
 
 func (that *ParserSocks) Parse(rawUri string) {
