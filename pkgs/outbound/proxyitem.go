@@ -3,7 +3,6 @@ package outbound
 import (
 	"encoding/json"
 	"fmt"
-	"strings"
 
 	"github.com/iscodefather/uri-to-json/pkgs/parser"
 	"github.com/iscodefather/uri-to-json/pkgs/utils"
