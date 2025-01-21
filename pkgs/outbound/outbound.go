@@ -30,7 +30,7 @@ func GetOutbound(clientType ClientType, rawUri string) (result IOutbound) {
 		case parser.SchemeSocks:
 			result = &xray.SocksOut{RawUri: rawUri}
 		case parser.SchemeHttp:
-			result = &xray.HttpOut{RawUri: rawUri}
+			result = &xray.HTTPOut{RawUri: rawUri}
 		case parser.SchemeWireguard:
 			result = &xray.WireguardOut{RawUri: rawUri}
 		default:
