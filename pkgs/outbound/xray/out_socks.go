@@ -36,8 +36,7 @@ var XraySocks string = `{
 			"users": [
 				{
 					"user": "test user",
-					"pass": "test pass",
-					"level": 0
+					"pass": "test pass"
 				}
 			]
 		}
