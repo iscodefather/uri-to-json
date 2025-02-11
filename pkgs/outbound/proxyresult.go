@@ -18,7 +18,6 @@ type Result struct {
 	ShadowSocks  []*ProxyItem `json:"Shadowsocks"`
 	Socks        []*ProxyItem `json:"Socks"`
 	Http         []*ProxyItem `json:"Http"`
-	Wireguard    []*ProxyItem `json:"Wireguard"`
 	UpdateAt       string       `json:"UpdateAt"`
 	VmessTotal     int          `json:"VmessTotal"`
 	VlessTotal     int          `json:"VlessTotal"`
@@ -26,7 +25,6 @@ type Result struct {
 	SSTotal        int          `json:"SSTotal"`
 	SocksTotal     int          `json:"SocksTotal"`
 	HttpTotal      int          `json:"HttpTotal"`
-	WireguardTotal int          `json:"WireguardTotal"`
 	totalList    []*ProxyItem
 	lock         *sync.Mutex
 }
@@ -79,9 +77,6 @@ func (that *Result) AddItem(proxyItem *ProxyItem) {
 	case parser.SchemeHttp:
 		that.Http = append(that.Http, proxyItem)
 		that.HttpTotal++
-	case parser.SchemeWireguard:
-		that.Wireguard = append(that.Wireguard, proxyItem)
-		that.WireguardTotal++
 	default:
 	}
 	that.totalList = append(that.totalList, proxyItem)
@@ -89,7 +84,7 @@ func (that *Result) AddItem(proxyItem *ProxyItem) {
 }
 
 func (that *Result) Len() int {
-	return that.VmessTotal + that.VlessTotal + that.TrojanTotal + that.SSTotal + that.SocksTotal + that.HttpTotal + that.WireguardTotal
+	return that.VmessTotal + that.VlessTotal + that.TrojanTotal + that.SSTotal + that.SocksTotal + that.HttpTotal
 }
 
 func (that *Result) GetTotalList() []*ProxyItem {
@@ -100,7 +95,6 @@ func (that *Result) GetTotalList() []*ProxyItem {
 		that.totalList = append(that.totalList, that.ShadowSocks...)
 		that.totalList = append(that.totalList, that.Socks...)
 		that.totalList = append(that.totalList, that.Http...)
-		that.totalList = append(that.totalList, that.Wireguard...)
 	}
 	return that.totalList
 }
@@ -119,8 +113,6 @@ func (that *Result) Clear() {
 	that.SocksTotal = 0
 	that.Http = []*ProxyItem{}
 	that.HttpTotal = 0
-	that.Wireguard = []*ProxyItem{}
-	that.WireguardTotal = 0
 	that.totalList = []*ProxyItem{}
 	that.lock.Unlock()
 }
