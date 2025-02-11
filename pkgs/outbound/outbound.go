@@ -31,8 +31,6 @@ func GetOutbound(clientType ClientType, rawUri string) (result IOutbound) {
 			result = &xray.SocksOut{RawUri: rawUri}
 		case parser.SchemeHttp:
 			result = &xray.HTTPOut{RawUri: rawUri}
-		case parser.SchemeWireguard:
-			result = &xray.WireguardOut{RawUri: rawUri}
 		default:
 			fmt.Println("unsupported protocol: ", scheme)
 		}
