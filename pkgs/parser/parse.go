@@ -15,7 +15,6 @@ const (
 	SchemeVmess     string = "vmess://"
 	SchemeSocks     string = "socks://"
 	SchemeHttp      string = "http://"
-	SchemeWireguard string = "wireguard://"
 )
 
 func GetVpnScheme(rawUri string) string {
